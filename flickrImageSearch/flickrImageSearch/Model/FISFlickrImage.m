@@ -32,7 +32,7 @@ static NSString * const ImageURL = @"http://farm%@.static.flickr.com/%@/%@_%@.jp
         _secret = [JSON objectForKey:@"secret"];
     }
     
-    return nil;
+    return self;
 }
 
 - (NSURL *)imageRemoteURL {
