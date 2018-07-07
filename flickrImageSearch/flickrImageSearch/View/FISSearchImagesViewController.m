@@ -35,6 +35,7 @@
     UIView *imagesCollectionView = self.imagesCollectionViewController.view;
     [self.resultsView addSubview:imagesCollectionView];
     [self.imagesCollectionViewController didMoveToParentViewController:self];
+    imagesCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
     [imagesCollectionView.leftAnchor constraintEqualToAnchor:self.resultsView.leftAnchor].active = YES;
     [imagesCollectionView.topAnchor constraintEqualToAnchor:self.resultsView.topAnchor].active = YES;
     [imagesCollectionView.rightAnchor constraintEqualToAnchor:self.resultsView.rightAnchor].active = YES;
