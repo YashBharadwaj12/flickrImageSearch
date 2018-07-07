@@ -13,23 +13,23 @@
 
 @protocol FISImagesInteractorDelegate;
 
+/**
+ All methods must be invoked on main thread only
+ */
 @protocol FISImagesInteractor <NSObject>
 
 @property (nonatomic, weak) id<FISImagesInteractorDelegate> delegate;
 
-- (void)addImagesJSON:(NSArray<NSDictionary *> *)imagesJSON
-             forQuery:(NSString *)searchText;
+- (void)addImagesJSON:(NSArray<NSDictionary *> *)imagesJSON;
 - (NSUInteger)totalNumberOfImages;
 - (id<FISImage>)imageAtIndex:(NSUInteger)index;
 - (void)deleteAllImagesData;
-- (void)deleteImagesDataForQuery:(NSString *)searchQuery;
 
 @end
 
 @protocol FISImagesInteractorDelegate <NSObject>
 
-- (void)imagesInteractor:(id<FISImagesInteractor>)imagesInteractor didUpdateImagesDataForQuery:(NSString *)searchQuery;
-- (void)imagesInteractorDidDeleteAllImages:(id<FISImagesInteractor>)imagesInteractor;
+- (void)imagesInteractorDidUpdateImages:(id<FISImagesInteractor>)imagesInteractor;
 
 @end
 
