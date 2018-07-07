@@ -11,17 +11,21 @@
 @interface FISConcreteImageManager ()
 
 @property (nonatomic, readonly) id<FISImageCache> imageCache;
+@property (nonatomic, readonly) id<FISNetworkImageManager> networkImageManager;
 
 @end
 
 @implementation FISConcreteImageManager
 
-- (instancetype)initWithImageCache:(id<FISImageCache>)imageCache {
+- (instancetype)initWithImageCache:(id<FISImageCache>)imageCache
+               networkImageManager:(id<FISNetworkImageManager>)networkImageManager {
     NSAssert(imageCache != nil, @"FISImageCache cache should not be nil");
+    NSAssert(networkImageManager != nil, @"FISNetworkImageManager cache should not be nil");
     self = [super init];
     
     if (self) {
         _imageCache = imageCache;
+        _networkImageManager = networkImageManager;
     }
     
     return self;
@@ -43,7 +47,17 @@
 
 - (void)networkImageForURL:(NSURL *)URL
            completionBlock:(void (^)(NSURL *, UIImage *, NSError *))completionBlock {
-    // TODO: Download image from network nd call completion block
+    NSAssert(completionBlock != nil, @"completionBlock should not be nil");
+    __weak typeof(self) weakSelf = self;
+    [self.networkImageManager networkImageForURL:URL
+                                 completionBlock:^(NSURL *URL, UIImage *image, NSError *error) {
+                                     if (image != nil) {
+                                         [weakSelf.imageCache cacheImage:image
+                                                                  forURL:URL];
+                                     }
+                                     
+                                     completionBlock(URL, image, error);
+                                 }];
 }
 
 @end

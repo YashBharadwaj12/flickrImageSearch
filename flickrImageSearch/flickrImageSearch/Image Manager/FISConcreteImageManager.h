@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FISImageManager.h"
 #import "FISImageCache.h"
+#import "FISNetworkImageManager.h"
 
 @interface FISConcreteImageManager : NSObject <FISImageManager>
 
-- (instancetype)initWithImageCache:(id<FISImageCache>)imageCache;
+- (instancetype)initWithImageCache:(id<FISImageCache>)imageCache
+               networkImageManager:(id<FISNetworkImageManager>)networkImageManager;
 
 @end
