@@ -62,7 +62,7 @@ static const NSUInteger SectionLeftInset = 5;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.presenter totalNumberOFImages];
+    return [self.presenter totalNumberOfImages];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
