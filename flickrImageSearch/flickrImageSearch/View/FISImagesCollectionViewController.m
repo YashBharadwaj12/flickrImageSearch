@@ -41,14 +41,16 @@ static const NSUInteger SectionLeftInset = 5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
     [self.collectionView registerNib:[UINib nibWithNibName:@"FISImageCollectionViewCell" bundle:nil]
           forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationDidChangeNotification:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)deviceOrientationDidChangeNotification:(NSNotification *)notification {
+    [self.collectionView reloadData];
 }
 
 - (void)showImagesForSearchText:(NSString *)searchText {
