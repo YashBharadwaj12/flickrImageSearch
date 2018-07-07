@@ -10,13 +10,16 @@
 
 @protocol FISViewPresenterDelegate;
 
+/**
+ All methods must be invoked on main thread only
+ */
 @protocol FISViewPresenter <NSObject>
 
 @property (nonatomic, weak) id<FISViewPresenterDelegate> delegate;
 
 - (void)loadImagesForQuery:(NSString *)searchText;
 - (void)loadMoreImages;
-- (NSUInteger)totalNumberOFImages;
+- (NSUInteger)totalNumberOfImages;
 - (id<FISImage>)imageAtIndex:(NSUInteger)index;
 - (BOOL)areMoreImagesAvailable;
 

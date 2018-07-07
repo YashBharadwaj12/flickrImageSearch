@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "FISViewPresenter.h"
+#import "FISImagesInteractor.h"
+#import "FISQueryManager.h"
 
 @interface FISConcreteViewPresenter : NSObject <FISViewPresenter>
+
+- (instancetype)initWithImagesInteractor:(id<FISImagesInteractor>)interactor
+                            queryManager:(id<FISQueryManager>)queryManager;
 
 @end
