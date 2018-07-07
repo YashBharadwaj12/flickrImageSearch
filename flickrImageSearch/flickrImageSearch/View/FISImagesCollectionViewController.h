@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISViewPresenter.h"
+#import "FISImageManager.h"
 
 @interface FISImagesCollectionViewController : UICollectionViewController
+
+- (instancetype)initWithPresenter:(id<FISViewPresenter>)presenter
+                     imageManager:(id<FISImageManager>)imageManager;
 
 /**
  Show images for the search text. Pass nil to show empty view.

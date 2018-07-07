@@ -31,6 +31,7 @@
     self = [super init];
     if (self) {
         _interactor = interactor;
+        _interactor.delegate = self;
         _queryManager = queryManager;
         _page = 1;
         _moreImagesAvailableToDownload = NO;

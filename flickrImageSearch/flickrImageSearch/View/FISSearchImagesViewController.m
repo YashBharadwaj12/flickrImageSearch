@@ -19,10 +19,11 @@
 
 @implementation FISSearchImagesViewController
 
-- (instancetype)init {
+- (instancetype)initWithImagesCollectionViewController:(FISImagesCollectionViewController *)imagesCollectionViewController {
+    NSAssert(imagesCollectionViewController != nil, @"imagesCollectionViewController should not be nil");
     self = [super initWithNibName:@"FISSearchImagesViewController" bundle:nil];
     if (self) {
-        _imagesCollectionViewController = [[FISImagesCollectionViewController alloc] init];
+        _imagesCollectionViewController = imagesCollectionViewController;
     }
     
     return self;

@@ -11,7 +11,8 @@
 
 @interface FISConcreteImagesInteractor ()
 
-@property (atomic) NSArray *imagesJSON;
+@property (nonatomic) NSArray *imagesJSON;
+@property (nonatomic) NSMutableSet *imageIDs;
 
 @end
 
@@ -19,12 +20,28 @@
 
 @synthesize delegate = _delegate;
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _imageIDs = [NSMutableSet set];
+        _imagesJSON = [NSArray array];
+    }
+    
+    return self;
+}
+
 - (void)addImagesJSON:(NSArray<NSDictionary *> *)imagesJSON {
     NSAssert([NSThread isMainThread], @"Not called on main thread");
     NSAssert(imagesJSON != nil, @"Images JSON should not be nil");
-    self.imagesJSON = (self.imagesJSON == nil
-                       ? [imagesJSON copy]
-                       : [self.imagesJSON arrayByAddingObjectsFromArray:imagesJSON]);
+    NSMutableArray *newImagesJSON = [NSMutableArray array];
+    for (NSDictionary *json in imagesJSON) {
+        NSString *imageID = [json objectForKey:@"id"];
+        if (imageID != nil && ![self.imageIDs containsObject:imageID]) {
+            [newImagesJSON addObject:json];
+            [self.imageIDs addObject:imageID];
+        }
+    }
+    self.imagesJSON = [self.imagesJSON arrayByAddingObjectsFromArray:newImagesJSON];
     [self.delegate imagesInteractorDidUpdateImages:self];
 }
 
@@ -41,7 +58,8 @@
 
 - (void)deleteAllImagesData {
     NSAssert([NSThread isMainThread], @"Not called on main thread");
-    self.imagesJSON = nil;
+    self.imagesJSON = [NSArray array];
+    [self.imageIDs removeAllObjects];
     [self.delegate imagesInteractorDidUpdateImages:self];
 }
 

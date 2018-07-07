@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISImagesCollectionViewController.h"
 
 @interface FISSearchImagesViewController : UIViewController
+
+- (instancetype)initWithImagesCollectionViewController:(FISImagesCollectionViewController *)imagesCollectionViewController;
 
 @end

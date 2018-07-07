@@ -8,6 +8,15 @@
 
 #import "FISSchedulerHelper.h"
 
+@implementation NSObject (TDTBlocksAdditions)
+
+- (void)my_callBlock {
+    FISSimpleBlock block = (id)self;
+    block();
+}
+
+@end
+
 void FISRunOnMainThread(BOOL wait, FISSimpleBlock block) {
     [[block copy] performSelectorOnMainThread:@selector(my_callBlock)
                                    withObject:nil

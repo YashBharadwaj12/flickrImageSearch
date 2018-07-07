@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "FISBuilder.h"
 
 @interface AppDelegate ()
 
@@ -18,8 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] init];
-    UIViewController *viewController = [[ViewController alloc] init];
-    viewController.view.backgroundColor = [UIColor whiteColor];
+    UIViewController *viewController = [FISBuilder flickerImagesViewController];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

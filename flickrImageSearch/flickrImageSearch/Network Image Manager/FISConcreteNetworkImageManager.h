@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FISNetworkImageManager.h"
+#import "FISNetworkHandler.h"
 
 @interface FISConcreteNetworkImageManager : NSObject <FISNetworkImageManager>
+
+- (instancetype)initWithNetworkHandler:(id<FISNetworkHandler>)networkHandler;
 
 @end

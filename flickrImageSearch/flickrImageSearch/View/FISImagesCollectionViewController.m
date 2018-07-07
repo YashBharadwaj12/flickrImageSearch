@@ -7,9 +7,7 @@
 //
 
 #import "FISImagesCollectionViewController.h"
-#import "FISViewPresenter.h"
 #import "FISImage.h"
-#import "FISImageManager.h"
 #import "FISImageCollectionViewCell.h"
 #import "FISSchedulerHelper.h"
 
@@ -26,12 +24,14 @@ static const NSUInteger SectionLeftInset = 5;
 
 @implementation FISImagesCollectionViewController
 
-- (instancetype)initWithPresenter:(id<FISViewPresenter>)presenter imageManager:(id<FISImageManager>)imageManager {
+- (instancetype)initWithPresenter:(id<FISViewPresenter>)presenter
+                     imageManager:(id<FISImageManager>)imageManager {
     NSAssert(presenter != nil, @"Presenter should not be nil");
     NSAssert(imageManager != nil, @"Image manager should not be nil");
     self = [super initWithNibName:@"FISImagesCollectionViewController" bundle:nil];
     if (self) {
         _presenter = presenter;
+        _presenter.delegate = self;
         _imageManager = imageManager;
     }
     

@@ -13,7 +13,10 @@
 
 - (void)fetchImagesForSearchText:(NSString *)searchText
                             page:(NSUInteger)page
-                 completionBlock:(void (^)(NSString *searchText, NSUInteger page, NSError *error, NSArray<NSDictionary *> *imagesJSON))completionBlock;
+                 completionBlock:(void (^)(NSString *searchText,
+                                           NSUInteger page,
+                                           NSError *error,
+                                           NSArray<NSDictionary *> *imagesJSON))completionBlock;
 
 @end
 
