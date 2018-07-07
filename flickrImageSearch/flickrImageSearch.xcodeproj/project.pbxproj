@@ -22,6 +22,11 @@
 		004F56E620F0CFA500BD3B8E /* FISConcreteImagesInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56E520F0CFA500BD3B8E /* FISConcreteImagesInteractor.m */; };
 		004F56EB20F0DB3F00BD3B8E /* FISImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56E920F0DB3F00BD3B8E /* FISImagesCollectionViewController.m */; };
 		004F56EC20F0DB3F00BD3B8E /* FISImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F56EA20F0DB3F00BD3B8E /* FISImagesCollectionViewController.xib */; };
+		004F56F020F128AE00BD3B8E /* FISSearchImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56EE20F128AE00BD3B8E /* FISSearchImagesViewController.m */; };
+		004F56F120F128AE00BD3B8E /* FISSearchImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F56EF20F128AE00BD3B8E /* FISSearchImagesViewController.xib */; };
+		004F56F520F1317800BD3B8E /* FISImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56F320F1317800BD3B8E /* FISImageCollectionViewCell.m */; };
+		004F56F620F1317800BD3B8E /* FISImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F56F420F1317800BD3B8E /* FISImageCollectionViewCell.xib */; };
+		004F56FA20F1349C00BD3B8E /* FISSchedulerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,14 @@
 		004F56E820F0DB3F00BD3B8E /* FISImagesCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISImagesCollectionViewController.h; sourceTree = "<group>"; };
 		004F56E920F0DB3F00BD3B8E /* FISImagesCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISImagesCollectionViewController.m; sourceTree = "<group>"; };
 		004F56EA20F0DB3F00BD3B8E /* FISImagesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FISImagesCollectionViewController.xib; sourceTree = "<group>"; };
+		004F56ED20F128AE00BD3B8E /* FISSearchImagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISSearchImagesViewController.h; sourceTree = "<group>"; };
+		004F56EE20F128AE00BD3B8E /* FISSearchImagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISSearchImagesViewController.m; sourceTree = "<group>"; };
+		004F56EF20F128AE00BD3B8E /* FISSearchImagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FISSearchImagesViewController.xib; sourceTree = "<group>"; };
+		004F56F220F1317800BD3B8E /* FISImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISImageCollectionViewCell.h; sourceTree = "<group>"; };
+		004F56F320F1317800BD3B8E /* FISImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISImageCollectionViewCell.m; sourceTree = "<group>"; };
+		004F56F420F1317800BD3B8E /* FISImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FISImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		004F56F820F1349C00BD3B8E /* FISSchedulerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISSchedulerHelper.h; sourceTree = "<group>"; };
+		004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISSchedulerHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +125,7 @@
 		0008940E20EBCF8000E39799 /* flickrImageSearch */ = {
 			isa = PBXGroup;
 			children = (
+				004F56F720F1346C00BD3B8E /* Helper Classes */,
 				004F56E720F0D8D000BD3B8E /* Factory */,
 				004F56C220F0AEB200BD3B8E /* Network Handler */,
 				004F56DE20F0CE4C00BD3B8E /* Network Image Manager */,
@@ -146,9 +160,15 @@
 		004F56BF20F0AE8200BD3B8E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				004F56F220F1317800BD3B8E /* FISImageCollectionViewCell.h */,
+				004F56F320F1317800BD3B8E /* FISImageCollectionViewCell.m */,
+				004F56F420F1317800BD3B8E /* FISImageCollectionViewCell.xib */,
 				004F56E820F0DB3F00BD3B8E /* FISImagesCollectionViewController.h */,
 				004F56E920F0DB3F00BD3B8E /* FISImagesCollectionViewController.m */,
 				004F56EA20F0DB3F00BD3B8E /* FISImagesCollectionViewController.xib */,
+				004F56ED20F128AE00BD3B8E /* FISSearchImagesViewController.h */,
+				004F56EE20F128AE00BD3B8E /* FISSearchImagesViewController.m */,
+				004F56EF20F128AE00BD3B8E /* FISSearchImagesViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,6 +257,15 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		004F56F720F1346C00BD3B8E /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				004F56F820F1349C00BD3B8E /* FISSchedulerHelper.h */,
+				004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */,
+			);
+			path = "Helper Classes";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,8 +349,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				004F56EC20F0DB3F00BD3B8E /* FISImagesCollectionViewController.xib in Resources */,
+				004F56F120F128AE00BD3B8E /* FISSearchImagesViewController.xib in Resources */,
 				0008941920EBCF8000E39799 /* Assets.xcassets in Resources */,
 				0008943420EBD17900E39799 /* Default-568h@2x.png in Resources */,
+				004F56F620F1317800BD3B8E /* FISImageCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,12 +375,15 @@
 				004F56DD20F0CBBE00BD3B8E /* FISConcreteQueryManager.m in Sources */,
 				004F56CD20F0B35800BD3B8E /* FISFlickrImage.m in Sources */,
 				004F56C920F0B2AC00BD3B8E /* FISConcreteViewPresenter.m in Sources */,
+				004F56F520F1317800BD3B8E /* FISImageCollectionViewCell.m in Sources */,
 				0008941F20EBCF8000E39799 /* main.m in Sources */,
 				004F56E620F0CFA500BD3B8E /* FISConcreteImagesInteractor.m in Sources */,
 				004F56EB20F0DB3F00BD3B8E /* FISImagesCollectionViewController.m in Sources */,
 				0008941120EBCF8000E39799 /* AppDelegate.m in Sources */,
+				004F56FA20F1349C00BD3B8E /* FISSchedulerHelper.m in Sources */,
 				004F56E220F0CE8E00BD3B8E /* FISConcreteNetworkImageManager.m in Sources */,
 				004F56D620F0B75D00BD3B8E /* FISConcreteImageCache.m in Sources */,
+				004F56F020F128AE00BD3B8E /* FISSearchImagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
