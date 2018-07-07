@@ -92,7 +92,7 @@ static const NSUInteger SectionLeftInset = 5;
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat paddingSpace = SectionLeftInset* (CellsPerRow + 1);
+    CGFloat paddingSpace = SectionLeftInset * (CellsPerRow * 2);
     CGFloat availableWidth = CGRectGetWidth(self.view.bounds) - paddingSpace;
     CGFloat widthPerCell = floor(availableWidth / CellsPerRow);
     
