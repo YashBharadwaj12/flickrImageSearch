@@ -27,6 +27,8 @@
 		004F56F520F1317800BD3B8E /* FISImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56F320F1317800BD3B8E /* FISImageCollectionViewCell.m */; };
 		004F56F620F1317800BD3B8E /* FISImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004F56F420F1317800BD3B8E /* FISImageCollectionViewCell.xib */; };
 		004F56FA20F1349C00BD3B8E /* FISSchedulerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */; };
+		004F56FF20F1539200BD3B8E /* FISConcreteNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56FE20F1539200BD3B8E /* FISConcreteNetworkHandler.m */; };
+		004F570220F16E5200BD3B8E /* FISBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570120F16E5200BD3B8E /* FISBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,11 @@
 		004F56F420F1317800BD3B8E /* FISImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FISImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		004F56F820F1349C00BD3B8E /* FISSchedulerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISSchedulerHelper.h; sourceTree = "<group>"; };
 		004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISSchedulerHelper.m; sourceTree = "<group>"; };
+		004F56FC20F1537B00BD3B8E /* FISNetworkHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISNetworkHandler.h; sourceTree = "<group>"; };
+		004F56FD20F1539200BD3B8E /* FISConcreteNetworkHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISConcreteNetworkHandler.h; sourceTree = "<group>"; };
+		004F56FE20F1539200BD3B8E /* FISConcreteNetworkHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISConcreteNetworkHandler.m; sourceTree = "<group>"; };
+		004F570020F16E5200BD3B8E /* FISBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISBuilder.h; sourceTree = "<group>"; };
+		004F570120F16E5200BD3B8E /* FISBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +203,9 @@
 		004F56C220F0AEB200BD3B8E /* Network Handler */ = {
 			isa = PBXGroup;
 			children = (
+				004F56FC20F1537B00BD3B8E /* FISNetworkHandler.h */,
+				004F56FD20F1539200BD3B8E /* FISConcreteNetworkHandler.h */,
+				004F56FE20F1539200BD3B8E /* FISConcreteNetworkHandler.m */,
 			);
 			path = "Network Handler";
 			sourceTree = "<group>";
@@ -253,6 +263,8 @@
 		004F56E720F0D8D000BD3B8E /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				004F570020F16E5200BD3B8E /* FISBuilder.h */,
+				004F570120F16E5200BD3B8E /* FISBuilder.m */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -370,9 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004F570220F16E5200BD3B8E /* FISBuilder.m in Sources */,
 				0008941420EBCF8000E39799 /* ViewController.m in Sources */,
 				004F56D220F0B5D700BD3B8E /* FISConcreteImageManager.m in Sources */,
 				004F56DD20F0CBBE00BD3B8E /* FISConcreteQueryManager.m in Sources */,
+				004F56FF20F1539200BD3B8E /* FISConcreteNetworkHandler.m in Sources */,
 				004F56CD20F0B35800BD3B8E /* FISFlickrImage.m in Sources */,
 				004F56C920F0B2AC00BD3B8E /* FISConcreteViewPresenter.m in Sources */,
 				004F56F520F1317800BD3B8E /* FISImageCollectionViewCell.m in Sources */,
