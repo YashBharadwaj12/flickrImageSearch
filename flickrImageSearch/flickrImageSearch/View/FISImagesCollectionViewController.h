@@ -10,4 +10,9 @@
 
 @interface FISImagesCollectionViewController : UICollectionViewController
 
+/**
+ Show images for the search text. Pass nil to show empty view.
+ */
+- (void)showImagesForSearchText:(NSString *)searchText;
+
 @end

@@ -7,14 +7,36 @@
 //
 
 #import "FISImagesCollectionViewController.h"
+#import "FISViewPresenter.h"
+#import "FISImage.h"
+#import "FISImageManager.h"
+#import "FISImageCollectionViewCell.h"
+#import "FISSchedulerHelper.h"
 
-@interface FISImagesCollectionViewController ()
+static NSString * const reuseIdentifier = @"Cell";
+static const NSUInteger CellsPerRow = 3;
+static const NSUInteger SectionLeftInset = 5;
+
+@interface FISImagesCollectionViewController () <FISViewPresenterDelegate, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, readonly) id<FISViewPresenter> presenter;
+@property (nonatomic, readonly) id<FISImageManager> imageManager;
 
 @end
 
 @implementation FISImagesCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+- (instancetype)initWithPresenter:(id<FISViewPresenter>)presenter imageManager:(id<FISImageManager>)imageManager {
+    NSAssert(presenter != nil, @"Presenter should not be nil");
+    NSAssert(imageManager != nil, @"Image manager should not be nil");
+    self = [super initWithNibName:@"FISImagesCollectionViewController" bundle:nil];
+    if (self) {
+        _presenter = presenter;
+        _imageManager = imageManager;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,76 +45,95 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[FISImageCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)showImagesForSearchText:(NSString *)searchText {
+    [self.presenter loadImagesForQuery:searchText];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+    return [self.presenter totalNumberOFImages];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
+    FISImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                           forIndexPath:indexPath];
+    id<FISImage> image = [self.presenter imageAtIndex:(NSUInteger)indexPath.row];
+    cell.imageManager = self.imageManager;
+    [cell configureWithImageURL:image.imageRemoteURL];
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+    return NO;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+#pragma mark <UICollectionViewDelegateFlowLayout>
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(SectionLeftInset, SectionLeftInset, SectionLeftInset, SectionLeftInset);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat paddingSpace = SectionLeftInset* (CellsPerRow + 1);
+    CGFloat availableWidth = CGRectGetWidth(self.view.bounds) - paddingSpace;
+    CGFloat widthPerCell = floor(availableWidth / CellsPerRow);
+    
+    return CGSizeMake(widthPerCell, widthPerCell);
 }
-*/
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return SectionLeftInset;
+}
+
+#pragma mark - FISViewPresenter delegate methods
+
+- (void)viewPresenter:(id<FISViewPresenter>)viewPresenter
+didLoadImagesForQuery:(NSString *)searchText
+            withError:(NSError *)error {
+    __weak typeof(self) weakSelf = self;
+    FISRunOnMainThread(NO, ^{
+        if (error != nil) {
+            [weakSelf showAlertWithTitle:@"Facing some error"
+                                 message:@"Please search again"];
+        } else {
+            [weakSelf.collectionView reloadData];
+        }
+    });
+}
+
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
+{
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:title
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* okButton = [UIAlertAction
+                                actionWithTitle:@"Ok"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                }];
+    
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 @end
