@@ -29,7 +29,7 @@
 
 - (void)imageForURL:(NSURL *)URL
     completionBlock:(void (^)(NSURL *, UIImage *, NSError *))completionBlock {
-    NSAssert(URL != nil, @"FURL should not be nil");
+    NSAssert(URL != nil, @"URL should not be nil");
     NSAssert(completionBlock != nil, @"completionBlock should not be nil");
     UIImage *cachedImage = [self.imageCache imageForURL:URL];
     
