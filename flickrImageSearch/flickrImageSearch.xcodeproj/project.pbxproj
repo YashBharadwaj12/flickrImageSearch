@@ -11,7 +11,6 @@
 		0008941420EBCF8000E39799 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008941320EBCF8000E39799 /* ViewController.m */; };
 		0008941920EBCF8000E39799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0008941820EBCF8000E39799 /* Assets.xcassets */; };
 		0008941F20EBCF8000E39799 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008941E20EBCF8000E39799 /* main.m */; };
-		0008942920EBCF8000E39799 /* flickrImageSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008942820EBCF8000E39799 /* flickrImageSearchTests.m */; };
 		0008943420EBD17900E39799 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0008943320EBD17900E39799 /* Default-568h@2x.png */; };
 		004F56C920F0B2AC00BD3B8E /* FISConcreteViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56C820F0B2AC00BD3B8E /* FISConcreteViewPresenter.m */; };
 		004F56CD20F0B35800BD3B8E /* FISFlickrImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56CC20F0B35800BD3B8E /* FISFlickrImage.m */; };
@@ -29,6 +28,12 @@
 		004F56FA20F1349C00BD3B8E /* FISSchedulerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56F920F1349C00BD3B8E /* FISSchedulerHelper.m */; };
 		004F56FF20F1539200BD3B8E /* FISConcreteNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56FE20F1539200BD3B8E /* FISConcreteNetworkHandler.m */; };
 		004F570220F16E5200BD3B8E /* FISBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570120F16E5200BD3B8E /* FISBuilder.m */; };
+		004F570420F23EF800BD3B8E /* FISConcreteViewPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570320F23EF800BD3B8E /* FISConcreteViewPresenterTests.m */; };
+		004F570620F2418400BD3B8E /* FISConcreteImagesInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570520F2418400BD3B8E /* FISConcreteImagesInteractorTests.m */; };
+		004F570720F2419F00BD3B8E /* FISConcreteImagesInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56E520F0CFA500BD3B8E /* FISConcreteImagesInteractor.m */; };
+		004F570A20F2444000BD3B8E /* FISMockQueryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570920F2444000BD3B8E /* FISMockQueryManager.m */; };
+		004F570B20F2457500BD3B8E /* FISConcreteViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56C820F0B2AC00BD3B8E /* FISConcreteViewPresenter.m */; };
+		004F570E20F245D600BD3B8E /* FISMockImagesInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +56,6 @@
 		0008941D20EBCF8000E39799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0008941E20EBCF8000E39799 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0008942420EBCF8000E39799 /* flickrImageSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flickrImageSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0008942820EBCF8000E39799 /* flickrImageSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = flickrImageSearchTests.m; sourceTree = "<group>"; };
 		0008942A20EBCF8000E39799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0008943320EBD17900E39799 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		004F56C420F0AEFC00BD3B8E /* FISViewPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISViewPresenter.h; sourceTree = "<group>"; };
@@ -91,6 +95,12 @@
 		004F56FE20F1539200BD3B8E /* FISConcreteNetworkHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISConcreteNetworkHandler.m; sourceTree = "<group>"; };
 		004F570020F16E5200BD3B8E /* FISBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISBuilder.h; sourceTree = "<group>"; };
 		004F570120F16E5200BD3B8E /* FISBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISBuilder.m; sourceTree = "<group>"; };
+		004F570320F23EF800BD3B8E /* FISConcreteViewPresenterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISConcreteViewPresenterTests.m; sourceTree = "<group>"; };
+		004F570520F2418400BD3B8E /* FISConcreteImagesInteractorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISConcreteImagesInteractorTests.m; sourceTree = "<group>"; };
+		004F570820F2444000BD3B8E /* FISMockQueryManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISMockQueryManager.h; sourceTree = "<group>"; };
+		004F570920F2444000BD3B8E /* FISMockQueryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISMockQueryManager.m; sourceTree = "<group>"; };
+		004F570C20F245D600BD3B8E /* FISMockImagesInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISMockImagesInteractor.h; sourceTree = "<group>"; };
+		004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISMockImagesInteractor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +168,13 @@
 		0008942720EBCF8000E39799 /* flickrImageSearchTests */ = {
 			isa = PBXGroup;
 			children = (
-				0008942820EBCF8000E39799 /* flickrImageSearchTests.m */,
 				0008942A20EBCF8000E39799 /* Info.plist */,
+				004F570320F23EF800BD3B8E /* FISConcreteViewPresenterTests.m */,
+				004F570520F2418400BD3B8E /* FISConcreteImagesInteractorTests.m */,
+				004F570820F2444000BD3B8E /* FISMockQueryManager.h */,
+				004F570920F2444000BD3B8E /* FISMockQueryManager.m */,
+				004F570C20F245D600BD3B8E /* FISMockImagesInteractor.h */,
+				004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */,
 			);
 			path = flickrImageSearchTests;
 			sourceTree = "<group>";
@@ -405,7 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0008942920EBCF8000E39799 /* flickrImageSearchTests.m in Sources */,
+				004F570620F2418400BD3B8E /* FISConcreteImagesInteractorTests.m in Sources */,
+				004F570A20F2444000BD3B8E /* FISMockQueryManager.m in Sources */,
+				004F570720F2419F00BD3B8E /* FISConcreteImagesInteractor.m in Sources */,
+				004F570B20F2457500BD3B8E /* FISConcreteViewPresenter.m in Sources */,
+				004F570420F23EF800BD3B8E /* FISConcreteViewPresenterTests.m in Sources */,
+				004F570E20F245D600BD3B8E /* FISMockImagesInteractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
