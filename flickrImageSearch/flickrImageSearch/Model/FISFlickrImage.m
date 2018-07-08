@@ -9,6 +9,7 @@
 #import "FISFlickrImage.h"
 
 static NSString * const ImageURL = @"http://farm%@.static.flickr.com/%@/%@_%@.jpg";
+static NSString * const ThumbnailImageURL = @"http://farm%@.static.flickr.com/%@/%@_%@_t.jpg";
 
 @interface FISFlickrImage ()
 
@@ -37,6 +38,11 @@ static NSString * const ImageURL = @"http://farm%@.static.flickr.com/%@/%@_%@.jp
 
 - (NSURL *)imageRemoteURL {
     NSString *stringURL = [NSString stringWithFormat:ImageURL, self.farm, self.server, self.imageId, self.secret];
+    return [NSURL URLWithString:stringURL];
+}
+
+- (NSURL *)thumbnailImageRemoteURL {
+    NSString *stringURL = [NSString stringWithFormat:ThumbnailImageURL, self.farm, self.server, self.imageId, self.secret];
     return [NSURL URLWithString:stringURL];
 }
 

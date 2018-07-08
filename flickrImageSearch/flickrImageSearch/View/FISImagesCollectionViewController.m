@@ -83,7 +83,7 @@ static const NSUInteger CellFromEndToLoadMore = 20;
                                                                            forIndexPath:indexPath];
     id<FISImage> image = [self.presenter imageAtIndex:(NSUInteger)indexPath.row];
     cell.imageManager = self.imageManager;
-    [cell configureWithImageURL:image.imageRemoteURL];
+    [cell configureWithImageURL:image.thumbnailImageRemoteURL];
     return cell;
 }
 

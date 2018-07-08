@@ -13,6 +13,8 @@
 
 - (NSURL *)imageRemoteURL;
 
+- (NSURL *)thumbnailImageRemoteURL;
+
 @end
 
 #endif /* FISImage_h */
