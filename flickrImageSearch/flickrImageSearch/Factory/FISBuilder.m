@@ -25,6 +25,7 @@ static NSString * const APIKey = @"3e7cc266ae2b0e0d78e279ce8e361736";
     FISConcreteNetworkHandler *networkHandler = [[FISConcreteNetworkHandler alloc] init];
     FISConcreteNetworkImageManager *networkImageManager = [[FISConcreteNetworkImageManager alloc] initWithNetworkHandler:networkHandler];
     FISConcreteImageCache *imageCache = [[FISConcreteImageCache alloc] init];
+    [imageCache setCountLimit:200];
     FISConcreteImageManager *imageManager = [[FISConcreteImageManager alloc] initWithImageCache:imageCache
                                                                             networkImageManager:networkImageManager];
     FISConcreteQueryManager *queryManager = [[FISConcreteQueryManager alloc] initWithNetworkHandler:networkHandler
