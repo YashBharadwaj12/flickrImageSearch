@@ -14,7 +14,8 @@
 @interface FISConcreteViewPresenterTests : XCTestCase <FISViewPresenterOutput>
 
 @property (nonatomic) FISConcreteViewPresenter *presenter;
-@property (nonatomic) XCTestExpectation *delegateCallExpectation;
+@property (nonatomic) XCTestExpectation *outputUpdateDataExpectation;
+@property (nonatomic) BOOL showLoading;
 
 @end
 
@@ -27,6 +28,8 @@
     self.presenter = [[FISConcreteViewPresenter alloc] initWithImagesInteractor:interactor
                                                                    queryManager:queryManager];
     self.presenter.output = self;
+    self.outputUpdateDataExpectation = nil;
+    self.showLoading = NO;
 }
 
 - (void)tearDown {
@@ -35,22 +38,30 @@
 }
 
 - (void)testMoreImagesAvailable {
-    self.delegateCallExpectation = [[XCTestExpectation alloc] initWithDescription:@"Presenter delegate called."];
+    self.outputUpdateDataExpectation = [[XCTestExpectation alloc] initWithDescription:@"Presenter delegate called."];
     [self.presenter loadImagesForQuery:@"dfsdf"];
-    [self waitForExpectations:@[self.delegateCallExpectation] timeout:5];
+    [self waitForExpectations:@[self.outputUpdateDataExpectation] timeout:5];
     XCTAssertTrue([self.presenter areMoreImagesAvailable]);
     
-    self.delegateCallExpectation = [[XCTestExpectation alloc] initWithDescription:@"Presenter delegate called again."];
+    self.outputUpdateDataExpectation = [[XCTestExpectation alloc] initWithDescription:@"Presenter delegate called again."];
     [self.presenter loadMoreImages];
-    [self waitForExpectations:@[self.delegateCallExpectation] timeout:5];
+    [self waitForExpectations:@[self.outputUpdateDataExpectation] timeout:5];
     XCTAssertFalse([self.presenter areMoreImagesAvailable]);
 }
 
+- (void)testShowLoadingImages {
+    [self.presenter loadImagesForQuery:@"dfsdf"];
+    XCTAssertTrue(self.showLoading);
+}
+
 - (void)updateData {
-    [self.delegateCallExpectation fulfill];
+    if (self.outputUpdateDataExpectation != nil) {
+        [self.outputUpdateDataExpectation fulfill];
+    }
 }
 
 - (void)showLoadingImages:(BOOL)showLoading {
+    self.showLoading = showLoading;
 }
 
 - (void)showErrorAlert {

@@ -16,7 +16,7 @@
 }
 
 - (NSUInteger)totalNumberOfImages {
-    return 1;
+    return 0;
 }
 
 - (id<FISImage>)imageAtIndex:(NSUInteger)index {
