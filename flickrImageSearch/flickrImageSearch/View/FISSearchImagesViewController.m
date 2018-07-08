@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Flickr Image Search";
     [self addChildViewController:self.imagesCollectionViewController];
     UIView *imagesCollectionView = self.imagesCollectionViewController.view;
     [self.resultsView addSubview:imagesCollectionView];
