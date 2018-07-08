@@ -22,7 +22,7 @@
 
 @implementation FISConcreteViewPresenter
 
-@synthesize delegate = _delegate;
+@synthesize output = _output;
 
 - (instancetype)initWithImagesInteractor:(id<FISImagesInteractor>)interactor
                             queryManager:(id<FISQueryManager>)queryManager {
@@ -40,6 +40,15 @@
     return self;
 }
 
+- (void)setImagesDownloadingInProgress:(BOOL)imagesDownloadingInProgress {
+    _imagesDownloadingInProgress = imagesDownloadingInProgress;
+    if (imagesDownloadingInProgress && [self totalNumberOfImages] == 0) {
+        [self.output showLoadingImages:YES];
+    } else {
+        [self.output showLoadingImages:NO];
+    }
+}
+
 - (void)loadImagesForQuery:(NSString *)searchText {
     NSAssert([NSThread isMainThread], @"Not called on main thread");
     [self.interactor deleteAllImagesData];
@@ -49,9 +58,7 @@
     if (searchText == nil
         || [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0) {
         self.moreImagesAvailableToDownload = NO;
-        [self.delegate viewPresenter:self
-               didLoadImagesForQuery:searchText
-                           withError:nil];
+        [self.output updateData];
     } else {
         self.page = 1;
         [self fetchImages];
@@ -78,12 +85,12 @@
                                                 } else {
                                                     [strongSelf.interactor addImagesJSON:imagesJSON];
                                                 }
+                                            } else {
+                                                [self.output showErrorAlert];
                                             }
                                             
                                             strongSelf.imagesDownloadingInProgress = NO;
-                                            [strongSelf.delegate viewPresenter:strongSelf
-                                                         didLoadImagesForQuery:searchText
-                                                                     withError:error];
+                                            [strongSelf.output updateData];
                                         });
                                     }
                                 }];
@@ -116,9 +123,7 @@
 #pragma mark <FISImagesInteractorDelegate>
 
 - (void)imagesInteractorDidUpdateImages:(id<FISImagesInteractor>)imagesInteractor {
-    [self.delegate viewPresenter:self
-           didLoadImagesForQuery:self.searchText
-                       withError:nil];
+    [self.output updateData];
 }
 
 @end

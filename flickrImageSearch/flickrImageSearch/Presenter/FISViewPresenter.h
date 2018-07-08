@@ -8,14 +8,14 @@
 
 #import "FISImage.h"
 
-@protocol FISViewPresenterDelegate;
+@protocol FISViewPresenterOutput;
 
 /**
  All methods must be invoked on main thread only
  */
 @protocol FISViewPresenter <NSObject>
 
-@property (nonatomic, weak) id<FISViewPresenterDelegate> delegate;
+@property (nonatomic, weak) id<FISViewPresenterOutput> output;
 
 - (void)loadImagesForQuery:(NSString *)searchText;
 - (void)loadMoreImages;
@@ -25,10 +25,10 @@
 
 @end
 
-@protocol FISViewPresenterDelegate <NSObject>
+@protocol FISViewPresenterOutput <NSObject>
 
-- (void)viewPresenter:(id<FISViewPresenter>)viewPresenter
-didLoadImagesForQuery:(NSString *)searchText
-            withError:(NSError *)error;
+- (void)showLoadingImages:(BOOL)showLoading;
+- (void)updateData;
+- (void)showErrorAlert;
 
 @end

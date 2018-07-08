@@ -2,7 +2,7 @@
 //  FISImagesCollectionViewController.h
 //  flickrImageSearch
 //
-//  Created by Yash Bhardwaj on 7/7/18.
+//  Created by Yash Bhardwaj on 7/8/18.
 //  Copyright © 2018 Yash Bhardwaj. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "FISViewPresenter.h"
 #import "FISImageManager.h"
 
-@interface FISImagesCollectionViewController : UICollectionViewController
+@interface FISImagesCollectionViewController : UIViewController
 
 - (instancetype)initWithPresenter:(id<FISViewPresenter>)presenter
                      imageManager:(id<FISImageManager>)imageManager;

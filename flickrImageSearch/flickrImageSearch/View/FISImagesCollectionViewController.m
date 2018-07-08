@@ -16,8 +16,11 @@ static const NSUInteger CellsPerRow = 3;
 static const NSUInteger SectionLeftInset = 5;
 static const NSUInteger CellFromEndToLoadMore = 20;
 
-@interface FISImagesCollectionViewController () <FISViewPresenterDelegate, UICollectionViewDelegateFlowLayout>
+@interface FISImagesCollectionViewController () <FISViewPresenterOutput, UICollectionViewDelegate,
+UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *textlabel;
 @property (nonatomic, readonly) id<FISViewPresenter> presenter;
 @property (nonatomic, readonly) id<FISImageManager> imageManager;
 
@@ -32,7 +35,7 @@ static const NSUInteger CellFromEndToLoadMore = 20;
     self = [super initWithNibName:@"FISImagesCollectionViewController" bundle:nil];
     if (self) {
         _presenter = presenter;
-        _presenter.delegate = self;
+        _presenter.output = self;
         _imageManager = imageManager;
     }
     
@@ -51,7 +54,7 @@ static const NSUInteger CellFromEndToLoadMore = 20;
 }
 
 - (void)deviceOrientationDidChangeNotification:(NSNotification *)notification {
-    [self.collectionView reloadData];
+    [self fis_reloadData];
 }
 
 - (void)showImagesForSearchText:(NSString *)searchText {
@@ -80,7 +83,7 @@ static const NSUInteger CellFromEndToLoadMore = 20;
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     [self loadMoreImagesIfRequiredWithIndex:indexPath.row];
     FISImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                           forIndexPath:indexPath];
+                                                                                 forIndexPath:indexPath];
     id<FISImage> image = [self.presenter imageAtIndex:(NSUInteger)indexPath.row];
     cell.imageManager = self.imageManager;
     [cell configureWithImageURL:image.thumbnailImageRemoteURL];
@@ -117,21 +120,45 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return SectionLeftInset;
 }
 
-#pragma mark - FISViewPresenter delegate methods
+#pragma mark - FISViewPresenterOutput methods
 
-- (void)viewPresenter:(id<FISViewPresenter>)viewPresenter
-didLoadImagesForQuery:(NSString *)searchText
-            withError:(NSError *)error {
+- (void)updateData {
     __weak typeof(self) weakSelf = self;
     FISRunOnMainThread(NO, ^{
-        if (error != nil) {
-            [weakSelf showAlertWithTitle:@"Facing some error"
-                                 message:@"Please search again"];
-        } else {
-            [weakSelf.collectionView reloadData];
-        }
+        [weakSelf fis_reloadData];
     });
 }
+
+- (void)showLoadingImages:(BOOL)showLoading {
+    __weak typeof(self) weakSelf = self;
+    FISRunOnMainThread(NO, ^{
+        if (showLoading) {
+            self.textlabel.text = @"Loading...";
+        }
+        
+        self.textlabel.hidden = !showLoading;
+    });
+}
+
+- (void)showErrorAlert {
+    __weak typeof(self) weakSelf = self;
+    FISRunOnMainThread(NO, ^{
+        [weakSelf showAlertWithTitle:@"Facing some error"
+                             message:@"Please search again"];
+    });
+}
+
+- (void)fis_reloadData {
+    if ([self.presenter totalNumberOfImages] == 0) {
+        self.textlabel.text = @"No Images available";
+        self.textlabel.hidden = NO;
+    } else {
+        self.textlabel.hidden = YES;
+    }
+    
+    [self.collectionView reloadData];
+}
+
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
@@ -140,10 +167,10 @@ didLoadImagesForQuery:(NSString *)searchText
                                  message:message
                                  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* okButton = [UIAlertAction
-                                actionWithTitle:@"Ok"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                }];
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                               }];
     
     [alert addAction:okButton];
     [self presentViewController:alert animated:YES completion:nil];
