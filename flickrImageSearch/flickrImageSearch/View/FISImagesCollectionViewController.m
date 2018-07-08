@@ -14,6 +14,7 @@
 static NSString * const reuseIdentifier = @"Cell";
 static const NSUInteger CellsPerRow = 3;
 static const NSUInteger SectionLeftInset = 5;
+static const NSUInteger CellFromEndToLoadMore = 20;
 
 @interface FISImagesCollectionViewController () <FISViewPresenterDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -57,6 +58,13 @@ static const NSUInteger SectionLeftInset = 5;
     [self.presenter loadImagesForQuery:searchText];
 }
 
+- (void)loadMoreImagesIfRequiredWithIndex:(NSUInteger)index {
+    NSUInteger totalNumberOfImages = [self.presenter totalNumberOfImages];
+    if (totalNumberOfImages < index || (totalNumberOfImages - index) <= CellFromEndToLoadMore) {
+        [self.presenter loadMoreImages];
+    }
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -68,7 +76,9 @@ static const NSUInteger SectionLeftInset = 5;
     return [self.presenter totalNumberOfImages];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self loadMoreImagesIfRequiredWithIndex:indexPath.row];
     FISImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                            forIndexPath:indexPath];
     id<FISImage> image = [self.presenter imageAtIndex:(NSUInteger)indexPath.row];
