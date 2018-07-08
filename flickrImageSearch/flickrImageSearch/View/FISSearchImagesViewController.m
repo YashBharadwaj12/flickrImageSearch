@@ -46,6 +46,7 @@
 #pragma mark - Search bar delegate methods
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
     [self.imagesCollectionViewController showImagesForSearchText:searchBar.text];
 }
 
