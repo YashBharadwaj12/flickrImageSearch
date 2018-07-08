@@ -34,6 +34,8 @@
 		004F570A20F2444000BD3B8E /* FISMockQueryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570920F2444000BD3B8E /* FISMockQueryManager.m */; };
 		004F570B20F2457500BD3B8E /* FISConcreteViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56C820F0B2AC00BD3B8E /* FISConcreteViewPresenter.m */; };
 		004F570E20F245D600BD3B8E /* FISMockImagesInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */; };
+		004F571020F24C5300BD3B8E /* FISFlickrImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F570F20F24C5300BD3B8E /* FISFlickrImageTests.m */; };
+		004F571120F24C5700BD3B8E /* FISFlickrImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 004F56CC20F0B35800BD3B8E /* FISFlickrImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,7 @@
 		004F570920F2444000BD3B8E /* FISMockQueryManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISMockQueryManager.m; sourceTree = "<group>"; };
 		004F570C20F245D600BD3B8E /* FISMockImagesInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FISMockImagesInteractor.h; sourceTree = "<group>"; };
 		004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISMockImagesInteractor.m; sourceTree = "<group>"; };
+		004F570F20F24C5300BD3B8E /* FISFlickrImageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISFlickrImageTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,7 @@
 				004F570920F2444000BD3B8E /* FISMockQueryManager.m */,
 				004F570C20F245D600BD3B8E /* FISMockImagesInteractor.h */,
 				004F570D20F245D600BD3B8E /* FISMockImagesInteractor.m */,
+				004F570F20F24C5300BD3B8E /* FISFlickrImageTests.m */,
 			);
 			path = flickrImageSearchTests;
 			sourceTree = "<group>";
@@ -421,7 +425,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				004F570620F2418400BD3B8E /* FISConcreteImagesInteractorTests.m in Sources */,
+				004F571020F24C5300BD3B8E /* FISFlickrImageTests.m in Sources */,
 				004F570A20F2444000BD3B8E /* FISMockQueryManager.m in Sources */,
+				004F571120F24C5700BD3B8E /* FISFlickrImage.m in Sources */,
 				004F570720F2419F00BD3B8E /* FISConcreteImagesInteractor.m in Sources */,
 				004F570B20F2457500BD3B8E /* FISConcreteViewPresenter.m in Sources */,
 				004F570420F23EF800BD3B8E /* FISConcreteViewPresenterTests.m in Sources */,
