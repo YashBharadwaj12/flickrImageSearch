@@ -11,7 +11,7 @@
 #import "FISMockQueryManager.h"
 #import "FISMockImagesInteractor.h"
 
-@interface FISConcreteViewPresenterTests : XCTestCase <FISViewPresenterDelegate>
+@interface FISConcreteViewPresenterTests : XCTestCase <FISViewPresenterOutput>
 
 @property (nonatomic) FISConcreteViewPresenter *presenter;
 @property (nonatomic) XCTestExpectation *delegateCallExpectation;
@@ -26,7 +26,7 @@
     FISMockImagesInteractor *interactor = [[FISMockImagesInteractor alloc] init];
     self.presenter = [[FISConcreteViewPresenter alloc] initWithImagesInteractor:interactor
                                                                    queryManager:queryManager];
-    self.presenter.delegate = self;
+    self.presenter.output = self;
 }
 
 - (void)tearDown {
@@ -46,10 +46,14 @@
     XCTAssertFalse([self.presenter areMoreImagesAvailable]);
 }
 
-- (void)viewPresenter:(id<FISViewPresenter>)viewPresenter
-didLoadImagesForQuery:(NSString *)searchText
-            withError:(NSError *)error {
+- (void)updateData {
     [self.delegateCallExpectation fulfill];
+}
+
+- (void)showLoadingImages:(BOOL)showLoading {
+}
+
+- (void)showErrorAlert {
 }
 
 @end
