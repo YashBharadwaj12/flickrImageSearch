@@ -41,6 +41,7 @@
     [imagesCollectionView.rightAnchor constraintEqualToAnchor:self.resultsView.rightAnchor].active = YES;
     [imagesCollectionView.bottomAnchor constraintEqualToAnchor:self.resultsView.bottomAnchor].active = YES;
     [self.imagesCollectionViewController showImagesForSearchText:nil];
+    [self.searchBar becomeFirstResponder];
 }
 
 #pragma mark - Search bar delegate methods
