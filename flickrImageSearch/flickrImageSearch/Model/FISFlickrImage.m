@@ -15,7 +15,7 @@ static NSString * const ThumbnailImageURL = @"http://farm%@.static.flickr.com/%@
 
 @property (nonatomic, readonly) NSString *imageId;
 @property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) NSString *farm;
+@property (nonatomic, readonly) id farm;
 @property (nonatomic, readonly) NSString *server;
 @property (nonatomic, readonly) NSString *secret;
 @end
